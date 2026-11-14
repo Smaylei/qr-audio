@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Áudio</title>
+<style>
+  body { margin:0; min-height:100vh; display:flex; flex-direction:column;
+         align-items:center; justify-content:center; font-family:system-ui, sans-serif;
+         background:#111; color:#fff; text-align:center; padding:20px; }
+  button { font-size:1.3rem; padding:18px 36px; border:none; border-radius:12px;
+           background:#22c55e; color:#fff; cursor:pointer; }
+  #status { opacity:.8; min-height:1.5em; }
+</style>
+</head>
+<body>
+<h1>Ouça o áudio</h1>
+<svg viewBox="0 0 300 300" width="240" height="240" role="img" aria-label="Gorila mostrando o dedo do meio">
+  <rect x="0" y="0" width="300" height="300" rx="24" fill="#f3f4f6"/>
+  <ellipse cx="140" cy="215" rx="62" ry="72" fill="#2b2b2b"/>
+  <path d="M185 190 Q215 160 235 110" stroke="#2b2b2b" stroke-width="26" stroke-linecap="round" fill="none"/>
+  <path d="M90 200 Q70 240 95 265" stroke="#2b2b2b" stroke-width="24" stroke-linecap="round" fill="none"/>
+  <circle cx="238" cy="96" r="20" fill="#2b2b2b"/>
+  <path d="M226 90 H250 M226 102 H250" stroke="#555" stroke-width="2" stroke-linecap="round"/>
+  <rect x="233" y="40" width="11" height="52" rx="5.5" fill="#2b2b2b"/>
+  <rect x="248" y="88" width="10" height="20" rx="5" fill="#2b2b2b"/>
+  <circle cx="90" cy="105" r="10" fill="#2b2b2b"/>
+  <circle cx="190" cy="105" r="10" fill="#2b2b2b"/>
+  <circle cx="140" cy="105" r="52" fill="#2b2b2b"/>
+  <ellipse cx="140" cy="118" rx="32" ry="28" fill="#8a8a8a"/>
+  <path d="M110 92 Q125 82 138 92 M142 92 Q156 82 170 92" stroke="#1a1a1a" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <circle cx="124" cy="100" r="5" fill="#fff"/>
+  <circle cx="156" cy="100" r="5" fill="#fff"/>
+  <circle cx="125" cy="101" r="2.5" fill="#000"/>
+  <circle cx="157" cy="101" r="2.5" fill="#000"/>
+  <ellipse cx="140" cy="116" rx="8" ry="5" fill="#4a4a4a"/>
+  <path d="M124 130 Q140 140 156 130" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>
+
+<audio id="player" src="musica.mp3" preload="auto" playsinline></audio>
+<button id="btn">▶ Tocar</button>
+<p id="status"></p>
+<script>
+  const player = document.getElementById('player');
+  const btn = document.getElementById('btn');
+  const status = document.getElementById('status');
+
+  function play() {
+    player.play().then(() => {
+      btn.style.display = 'none';
+      status.textContent = '';
+    }).catch(() => {
+      status.textContent = 'Toque no botão para iniciar o áudio.';
+    });
+  }
+
+  btn.addEventListener('click', play);
+  window.addEventListener('load', play);
+</script>
+</body>
+</html>
